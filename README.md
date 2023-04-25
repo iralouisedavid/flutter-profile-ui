@@ -1,4 +1,4 @@
-#Profile UI Template for Flutter
+# Profile UI Template for Flutter
 
 Profile is a Flutter package that provides a customizable UI template for a profile screen. It includes a circle avatar for the profile icon, a cover photo for the header, a star rating, icon buttons, address label and address text, and an appointment button. The layout is fixed but the attributes can be customized to fit your app's needs.
 
