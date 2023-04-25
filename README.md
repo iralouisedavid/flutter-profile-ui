@@ -19,7 +19,7 @@ dependencies:
 import 'package:profile/profile.dart';
 ```
 
-3. Use the Profile widget in your app's UI hierarchy. Here's an example:
+3. Use the Profile widget in your app's user interface. Here is an example:
 
 ```
 Profile(
