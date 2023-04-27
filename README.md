@@ -2,6 +2,8 @@
 
 Profile is a Flutter package that provides a customizable UI template for a profile screen. It includes a circle avatar for the profile icon, a cover photo for the header, a star rating, icon buttons, address label and address text, and an appointment button. The layout is fixed but the attributes can be customized to fit your app's needs.
 
+![Profile UI Template](./assets/images/profile_ui.png)
+
 ## Usage
 
 To use the Profile UI Template in your Flutter app, kindly follow these steps:
@@ -10,7 +12,7 @@ To use the Profile UI Template in your Flutter app, kindly follow these steps:
 
 ```
 dependencies:
-  profile: ^1.0.0
+  profile: ^1.1.0
 ```
 
 2. Import the package in your Dart code:
@@ -74,4 +76,111 @@ Here's a list of the available widgets that you can use to customize the profile
 - ProfileMessageButton: A widget that displays a message icon button.
 - ProfileAppointmentButton: A widget that displays an appointment button.
 
+# Customization Options
+
+Here are some examples of how to customize the widgets in your profile package by overriding values:
+
+* Changing the image of the profile avatar using image asset:
+```
+Profile(
+  avatarImagePath: 'assets/images/custom_avatar.jpg',
+)
+```
+
+* Changing the image of the profile cover using network image:
+```
+Profile(
+  coverImagePath: 'https://picsum.photos/seed/picsum/1500/1600',
+)
+```
+
+* Changing the text, font family, size, and color of the profile name:
+```
+Profile(
+  profileName: ProfileName(
+    nameText: 'New Name',
+    fontFamily: GoogleFonts.poppins().fontFamily,
+    fontSize: 25,
+    fontColor: Colors.white,
+  ),
+)
+```
+
+* Customizing the address label font family, size, and color:
+```
+Profile(
+  profileAddressLabel: ProfileAddressLabel(
+    fontFamily: GoogleFonts.poppins().fontFamily,
+    fontSize: 22,
+    fontColor: Colors.white,
+  ),
+)
+```
+
+* Customizing the address text, font family, size, and color:
+```
+Profile(
+  profileAddress: ProfileAddress(
+    addressText: '22nd flr., Random Bldg.\n123 Hello Street\nQuezon City, Philippines\n5600',
+    fontFamily: GoogleFonts.poppins().fontFamily,
+    fontSize: 18,
+    fontColor: Colors.white,
+  ),
+)
+```
+
+* Changing the star rating value:
+```
+Profile(
+  rating: 4.5,
+)
+```
+
+* Customizing the icon and icon color of the favorite icon button:
+```
+Profile(
+  profileFavoriteButton: const ProfileFavoriteButton(
+    icon: Icons.heart_broken_rounded,
+    iconColor: Colors.pinkAccent,
+  ),
+)
+```
+
+* Passing a different onPressed value to the share icon button:
+```
+Profile(
+  shareButtonOnPressed: () => showSnackBar(context, 'Share button pressed'),
+)
+```
+
+* Changing the font size, weight, and color of the appointment button:
+```
+Profile(
+  profileAppointmentButton: const ProfileAppointmentButton(
+    fontColor: Colors.white,
+    fontWeight: FontWeight.w800,
+    fontSize: 16,
+  ),
+)
+```
+
+* Customizing the label and color of the appointment button widget:
+```
+Profile(
+  profileAppointmentButton: const ProfileAppointmentButton(
+    buttonText: 'Schedule an Appointment',
+    buttonColor: Colors.orange,
+  ),
+)
+```
+
+* Passing a different onPressed value to the appointment button:
+```
+Profile(
+   appointmentButtonOnPressed: () => showSnackBar(context, 'Appointment button pressed'),
+)
+```
+
 You can customize each of these widgets by passing in different values to their constructors. For example, to change the label of the appointment button widget, pass a different string to the label parameter of ProfileAppointmentButton.
+
+Feel free to mix and match these examples to suit your needs!
