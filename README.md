@@ -76,7 +76,7 @@ Here's a list of the available widgets that you can use to customize the profile
 - ProfileMessageButton: A widget that displays a message icon button.
 - ProfileAppointmentButton: A widget that displays an appointment button.
 
-# Customization Options
+## Customization Options
 
 Here are some examples of how to customize the widgets in your profile package by overriding values:
 
