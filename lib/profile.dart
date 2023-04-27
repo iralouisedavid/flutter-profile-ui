@@ -58,14 +58,29 @@ class Profile extends StatefulWidget {
 
 class _ProfileState extends State<Profile> {
   int _rating = 0;
+
   @override
   Widget build(BuildContext context) {
+    final orientation = MediaQuery.of(context).orientation;
+    return orientation == Orientation.landscape ? buildLandscapeLayout() : buildPortraitLayout();
+    // return OrientationBuilder(
+    //   builder: (context, orientation) {
+    //     if (orientation == Orientation.landscape) {
+    //       return buildLandscapeLayout();
+    //     } else {
+    //       return buildPortraitLayout();
+    //     }
+    //   },
+    // );
+  }
 
+  Widget buildPortraitLayout() {
     return Scaffold(
       body: SingleChildScrollView(
         child: Stack(
           children: [
-            ProfileCover(imagePath: widget.coverImagePath ?? 'assets/images/profile_cover.jpg'),
+            ProfileCover(imagePath: widget.coverImagePath ??
+                'assets/images/profile_cover.jpg'),
             Align(
               alignment: Alignment.center,
               child: Container(
@@ -106,6 +121,7 @@ class _ProfileState extends State<Profile> {
                     widget.profileAddress ?? ProfileAddress(),
                     const SizedBox(height: 20),
                     widget.profileAppointmentButton ?? ProfileAppointmentButton(onPressed: widget.appointmentButtonOnPressed ?? ProfileAppointmentButton.defaultOnPressed),
+                    const SizedBox(height: 20),
                   ],
                 ),
               ),
@@ -126,6 +142,93 @@ class _ProfileState extends State<Profile> {
                 child: ProfileAvatar(
                   radius: 60,
                   imagePath: widget.avatarImagePath ?? 'assets/images/profile_icon.jpg',
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget buildLandscapeLayout(){
+    return Scaffold(
+      body: SingleChildScrollView(
+        child: Stack(
+          children: [
+            ProfileCover(
+              imagePath: widget.coverImagePath ?? 'assets/images/profile_cover.jpg',
+              colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.6), BlendMode.darken),
+            ),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Positioned(
+                  child: Container(
+                    margin: const EdgeInsets.fromLTRB(35, 35, 20, 0),
+                    width: 130,
+                    height: 130,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      border: Border.all(
+                        width: 6,
+                        color: Colors.purpleAccent.withOpacity(0.4),
+                      ),
+                    ),
+                    child: ProfileAvatar(
+                      radius: 60,
+                      imagePath: widget.avatarImagePath ?? 'assets/images/profile_icon.jpg',
+                    ),
+                  ),
+                ),
+                const SizedBox(width: 10),
+                Column(
+                  children: [
+                    const SizedBox(height: 40),
+                    widget.profileName ?? ProfileName(),
+                    StarRating(
+                      initialRating: widget.rating ?? 0,
+                      onRatingChanged: (rating) {
+                        setState(() {
+                          _rating = rating;
+                        });
+                      },
+                    ),
+                    const SizedBox(height: 10),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start, // changed from center to start
+                      children: [
+                        widget.profileFavoriteButton ?? ProfileFavoriteButton(onPressed: widget.favoriteButtonOnPressed ?? ProfileFavoriteButton.defaultOnPressed),
+                        const SizedBox(width: 15),
+                        widget.profileShareButton ?? ProfileShareButton(onPressed: widget.shareButtonOnPressed ?? ProfileShareButton.defaultOnPressed),
+                        const SizedBox(width: 15),
+                        widget.profilePhoneButton ?? ProfilePhoneButton(onPressed: widget.phoneButtonOnPressed ?? ProfilePhoneButton.defaultOnPressed),
+                        const SizedBox(width: 15),
+                        widget.profileMessageButton ?? ProfileMessageButton(onPressed: widget.messageButtonOnPressed ?? ProfileMessageButton.defaultOnPressed),
+                        //const ProfileButtons().shareButton(onPressed: widget.shareButtonOnPressed ?? ProfileButtons.defaultOnPressed),
+                      ],
+                    ),
+                  ],
+                ),
+              ],
+            ),
+            Align(
+              alignment: Alignment.centerRight, // changed from center to right
+              child: Container(
+                margin: const EdgeInsets.only(top: 200),
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                color: widget.backgroundColor ?? Colors.white,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const SizedBox(height: 50),
+                    widget.profileAddressLabel ?? ProfileAddressLabel(),
+                    const SizedBox(height: 10),
+                    widget.profileAddress ?? ProfileAddress(),
+                    const SizedBox(height: 20),
+                    widget.profileAppointmentButton ?? ProfileAppointmentButton(onPressed: widget.appointmentButtonOnPressed ?? ProfileAppointmentButton.defaultOnPressed),
+                    const SizedBox(height: 20),
+                  ],
                 ),
               ),
             ),
